@@ -40,13 +40,13 @@ Not thoroughly tested bit should work?.
 
 filename FT15F001 "c:/oto/getDrive.sas"; /*---- send to autocall folder  ----*/
 parmcards4;
-%macro getDrive(pth)/ des="Extract drive letter from the full path" ;
+%macro getFileDrive(pth)/ des="Extract drive letter from the full path" ;
     %qscan(&pth,1,":");
-%mend getDrive;
+%mend getFileDrive;
 ;;;;
 run;quit;
 
-%put  Drive = %getDrive(&full_path);
+%put  Drive = %getFileDrive(&full_path);
 
 
 /*----                                                                   ----*/
@@ -142,6 +142,33 @@ run;quit;
 /*----
 
 File With Extension = testing.sas
+
+                                                                                                                                        
+/*          _   _____ _ _      _____      _                 _                                                                           
+  __ _  ___| |_|  ___(_) | ___| ____|_  _| |_ ___ _ __  ___(_) ___  _ __                                                                
+ / _` |/ _ \ __| |_  | | |/ _ \  _| \ \/ / __/ _ \ `_ \/ __| |/ _ \| `_ \                                                               
+| (_| |  __/ |_|  _| | | |  __/ |___ >  <| ||  __/ | | \__ \ | (_) | | | |                                                              
+ \__, |\___|\__|_|   |_|_|\___|_____/_/\_\\__\___|_| |_|___/_|\___/|_| |_|                                                              
+ |___/                                                                                                                                  
+*/                                                                                                                                      
+                                                                                                                                        
+filename FT15F001 "c:/oto/getFileWithExtension.sas"; /*---- autocall     ----*/                                                         
+parmcards4;                                                                                                                             
+%macro getFileExtension(pth)/des="get file name without extension";                                                                     
+  %qscan(&pth,-1,'.')                                                                                                                   
+%mend getFileExtension;                                                                                                                 
+;;;;                                                                                                                                    
+run;quit;                                                                                                                               
+                                                                                                                                        
+%put FileExtension = %getFileExtension(&full_path);                                                                                     
+                                                                                                                                        
+/*----                                                                   ----*/                                                         
+/*----   OUTPUT                                                          ----*/                                                         
+/*----                                                                                                                                  
+                                                                                                                                        
+File With Extension = sas                                                                                                               
+                                                                             
+
 
 /*              _
   ___ _ __   __| |
