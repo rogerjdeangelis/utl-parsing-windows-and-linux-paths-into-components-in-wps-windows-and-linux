@@ -145,6 +145,31 @@ Parsing windows and linux paths into components in wps windows and linux
 
     File With Extension = testing.sas
 
+        /*          _   _____ _ _      _____      _                 _                               
+      __ _  ___| |_|  ___(_) | ___| ____|_  _| |_ ___ _ __  ___(_) ___  _ __                    
+     / _` |/ _ \ __| |_  | | |/ _ \  _| \ \/ / __/ _ \ `_ \/ __| |/ _ \| `_ \                   
+    | (_| |  __/ |_|  _| | | |  __/ |___ >  <| ||  __/ | | \__ \ | (_) | | | |                  
+     \__, |\___|\__|_|   |_|_|\___|_____/_/\_\\__\___|_| |_|___/_|\___/|_| |_|                  
+     |___/                                                                                      
+    */                                                                                          
+                                                                                                
+    filename FT15F001 "c:/oto/getFileWithExtension.sas"; /*---- autocall     ----*/             
+    parmcards4;                                                                                 
+    %macro getFileExtension(pth)/des="get file name without extension";                         
+      %qscan(&pth,-1,'.')                                                                       
+    %mend getFileExtension;                                                                     
+    ;;;;                                                                                        
+    run;quit;                                                                                   
+                                                                                                
+    %put FileExtension = %getFileExtension(&full_path);                                         
+                                                                                                
+    /*----                                                                   ----*/             
+    /*----   OUTPUT                                                          ----*/             
+    /*----                                                                                      
+                                                                                                
+    File With Extension = sas                                                                   
+
+
     /*              _
       ___ _ __   __| |
      / _ \ `_ \ / _` |
